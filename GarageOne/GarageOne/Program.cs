@@ -10,6 +10,9 @@ namespace GarageOne
     {
         static void Main(string[] args)
         {
+            var calling = new MainMenu();
+            calling.mainmenu();
+
         }
     }
 }
