@@ -39,6 +39,8 @@ namespace GarageOne
         {
             garsize = input;
             garageArray = new T[garsize];
+
+            count = 0;
             //for (int i = 0; i < garsize; i++)
             //{
             //    garageArray[i] = garageArray[i + 1];
@@ -46,20 +48,33 @@ namespace GarageOne
         }
         public void Park(T vehicle)
         {
-            count = 0;
-            if (count < 10)
-            {
-                
-                for (int i = 0; i < garsize; i++)
-                {
 
-                    garageArray[count] = vehicle;
-                    count += 1;
-                    
             
+
+            if ( count < garsize )
+            {
+                garageArray[count] = vehicle;
+                if (garageArray[count] == null)
+                {
+                    Console.WriteLine("empty spot");
                 }
-               
             }
+          
+
+            else
+            {
+                Console.WriteLine("full");
+            }
+            count++;
+
+
+
+
+           
+
+
+
+            
 
        
 

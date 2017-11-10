@@ -13,7 +13,7 @@ namespace GarageOne
         public void Calculations()
            
         {
-            int id = 10;
+            int id = 4;
             Garage<Vehicle> creator = new Garage<Vehicle>(id);
             
             var bus = new Bus("xft 545", "red", "benz", 4, 8);
@@ -23,7 +23,7 @@ namespace GarageOne
             creator.Park(bus);
             creator.Park(aeroplane);
             creator.Park(bike);
-            //creator.Park(boat);
+            creator.Park(boat);
            
             foreach (var item in creator)
             {
