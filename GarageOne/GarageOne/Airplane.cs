@@ -16,7 +16,7 @@ namespace GarageOne
             set { numberofengines = value; }
         }
 
-        //public Airplane() { }
+        public Airplane() { }
 
         public Airplane(string type, string regno, string col, string model, int wheels, int engines) :
             base(type, regno, col, model, wheels)

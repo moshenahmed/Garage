@@ -9,9 +9,10 @@ namespace GarageOne
 {
     public class Garage<T> : IEnumerable<T> where T : Vehicle
     {
-        private List<T> vehicleList = new List<T>();
+        private T[] garageArray;
         private int garsize;
-        private int count;       
+        private int count;
+
 
         public int GarSize
         {
@@ -22,63 +23,135 @@ namespace GarageOne
         public int Count
         {
             get { return count; }
-            set { count = value; }
+            private set { count = value; }
         }
-               
 
-        public Garage(T input) //Must set max capacity
-        {                                   
-            //need to Set Max Capacity
-            //vehicleList = new List<T>();
+
+        //public Park()
+        //{
+
+        //}
+        //public Garage()
+        //{
+
+        //}
+        public Garage(int input)
+        {
+            garsize = input;
+            garageArray = new T[garsize];
+
+            count = 0;
+            //for (int i = 0; i < garsize; i++)
+            //{
+            //    garageArray[i] = garageArray[i + 1];
+            //}
         }
+        public void Park(T vehicle)
+        {
+
+            
+
+            if ( count < garsize )
+            {
+                garageArray[count] = vehicle;
+                if (garageArray[count] == null)
+                {
+                    Console.WriteLine("empty spot");
+                }
+            }
+          
+
+            else
+            {
+                Console.WriteLine("full");
+            }
+            count++;
+
+
+
+
+           
+
+
+
+            
 
        
 
-        public void Park(T vehicle)
-        {            
-            vehicleList.Add(vehicle);
-        }
-
-        private static void AddVehicle()
-        {
-            //List<Vehicle> vehicleList = new List<Vehicle>();
-            //Console.WriteLine("Type:");
-            //var type = Console.ReadLine();
-            //Console.Write("Registration Number:");
-            //var regno = Console.ReadLine();
-            //Console.Write("Color:");
-            //var col = Console.ReadLine();
-            //Console.Write("Model:");
-            //var model = Console.ReadLine();
-            //Console.WriteLine("Wheels:");
-            //var wheels = Console.ReadLine();
-            //var vehicle = new Vehicle(type,regno, col, model, wheels);
-
-            //vehicleList.Add(vehicle);
-
-            //Console.WriteLine("The following vehicle has been parked");
-            //Console.WriteLine("\n");
-            //foreach (var item in vehicleList)
+            //for (int i = 0; i < garsize; i++)
             //{
-            //    Console.WriteLine(item.PrintVehicles());
+            //   
+
             //}
-            //Console.ReadLine();
+
+
         }
+                
+                
+                    
+
+                 
+              
+            
+            
+
+
+
+
+
+
+
+
+
 
         public void Unpark(int id)
         {
-           
-            
+            if (id != 0 && id <= garsize && garageArray[id] != null)
+            {
+                if (id + 1 != garsize)
+                {
+                    for (int i = id; i < garsize; i++)
+                    {
+                        if (garageArray[i + 1] != null && i + 1 != garsize)
+                        {
+                            garageArray[i] = garageArray[i + 1];
+                        }
+                        else
+                        {
+                            garageArray[i] = null;
+                        }
+                    }
+                }
+                else
+                {
+                    garageArray[id] = null;
+                }
+                count--;
+            }
         }
+
+
+
+
+        //public void listparkedvehicles() /*List all elements in the list as parked vehicles.*/
+        //{
+        //    foreach (var item in vehicleList)
+        //    {
+        //        Console.WriteLine(item);
+        //    }
+        //}
+
 
 
 
 
         public IEnumerator<T> GetEnumerator()
         {
-            for (int i = 0; i < count; i++)
+            for (int i = 0; i < garsize; i++)
+
             {
-                yield return vehicleList[i];
+                
+                yield return garageArray[i];
             }
         }
 
