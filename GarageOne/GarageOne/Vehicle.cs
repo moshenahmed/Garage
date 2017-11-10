@@ -46,7 +46,7 @@ namespace GarageOne
         }
 
 
-        //public Vehicle(){}
+        public Vehicle() { }
 
         public Vehicle(string type,string regno, string col, string model, int wheels)
         {

@@ -16,7 +16,7 @@ namespace GarageOne
             set { length = value; }
         }
 
-        public Boat() { }
+        //public Boat() { }
 
         public Boat(string type, string regno, string col, string model, int wheels, int length) :
             base(type, regno, col, model, wheels)

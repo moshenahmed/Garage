@@ -7,10 +7,14 @@ using System.Threading.Tasks;
 namespace GarageOne
 {
     public class Program
+    
     {
+        
         static void Main(string[] args)
         {
-            List<Vehicle> vehicleList = new List<Vehicle>();
+         
+
+        List<Vehicle> vehicleList = new List<Vehicle>();
             bool runAgain = true;
             while (runAgain == true)
             {
@@ -43,6 +47,7 @@ namespace GarageOne
                         Console.WriteLine("\n");
                         Console.WriteLine("Input can not be empty !");
                     }
+                    
 
                     switch (nav)
                     {
@@ -53,7 +58,8 @@ namespace GarageOne
                         case '2':
                             break;
 
-                        case '3': //Print list of parked vehicles                            
+                        case '3': //Print list of parked vehicles   
+                           
                             break;
 
                         case '4': //list of vehicle types currently in the garage
@@ -73,12 +79,17 @@ namespace GarageOne
 
             }
         }
-        
+
+    
+
 
         public static void AddVehicle()
         {
-            List<Vehicle> vehicleList = new List<Vehicle>();
-            bool runAgain = true;
+            //List<Vehicle> vehicleList = new List<Vehicle>();
+
+        int  id = 2;
+        Garage<Vehicle> creator = new Garage<Vehicle>(id);
+        bool runAgain = true;
             while (runAgain == true)
             {
                 string option2 = "";
@@ -121,7 +132,7 @@ namespace GarageOne
                         var fuel = Console.ReadLine();
                         var type = "Car";
                         var car = new Car(type, regno, col, model, wheels, fuel);
-                        vehicleList.Add(car);
+                        creator.Park(car);
                         break;
 
                     case '2':
@@ -136,11 +147,11 @@ namespace GarageOne
                         Console.ReadLine();
                         type = "Bus";
                         var bus = new Bus(type, regno, col, model, wheels, seats);
-                        vehicleList.Add(bus);
+                        creator.Park(bus);
                         break;
 
                     case '3':
-                        Console.Write("Length: ");                        
+                        Console.Write("Length: ");
                         var lengthTest = Console.ReadLine();
                         var length = 20;
                         if (!int.TryParse(lengthTest, out length))
@@ -151,11 +162,11 @@ namespace GarageOne
                         Console.ReadLine();
                         type = "Boat";
                         var boat = new Boat(type, regno, col, model, wheels, length);
-                        vehicleList.Add(boat);
+                        creator.Park(boat);
                         break;
 
                     case '4':
-                        Console.Write("Number of Engines: ");                                               
+                        Console.Write("Number of Engines: ");
                         var enginesTest = Console.ReadLine();
 
                         var engines = 2;
@@ -167,11 +178,11 @@ namespace GarageOne
                         Console.ReadLine();
                         type = "Airplane";
                         var airplane = new Airplane(type, regno, col, model, wheels, engines);
-                        vehicleList.Add(airplane);
+                        creator.Park(airplane);
                         break;
 
                     case '5':
-                        Console.Write("Cylinder volume: ");                        
+                        Console.Write("Cylinder volume: ");
                         var cvTest = Console.ReadLine();
                         var cv = 500;
                         if (!int.TryParse(cvTest, out cv))
@@ -182,30 +193,33 @@ namespace GarageOne
                         Console.ReadLine();
                         type = "Motorcycle";
                         var motorcycle = new Motorcycle(type, regno, col, model, wheels, cv);
-                        vehicleList.Add(motorcycle);
+                        creator.Park(motorcycle);
                         break;
 
                     default:
                         Console.WriteLine("Please enter valid input(0, 1, 2, 3, 4 or 5)");
                         break;
-
                 }
 
+                        Console.WriteLine("The following vehicle(s) are added");
 
-                Console.Clear();
-                Console.WriteLine("The following vehicle(s) are added");
-
-                foreach (var item in vehicleList)
-                {
-                    Console.WriteLine(item.PrintVehicles());
+                        foreach (var item in creator)
+                        {
+                            Console.WriteLine(item.PrintVehicles() +
+                    "\n--------------------------------\n");
+                        }
+                        Console.ReadLine();
                 }
-                Console.ReadLine();
-
             }
         }
+
+       
     }
 
-}
+
+
+
+
 
 
 
