@@ -54,10 +54,10 @@ namespace GarageOne
             if ( count < garsize )
             {
                 garageArray[count] = vehicle;
-                if (garageArray[count] == null)
-                {
-                    Console.WriteLine("empty spot");
-                }
+                //if (garageArray[count] == null)
+                //{
+                //    Console.WriteLine("empty spot");
+                //}
             }
           
 

@@ -7,14 +7,14 @@ using System.Threading.Tasks;
 namespace GarageOne
 {
     public class Program
-    
+
     {
-        
+
         static void Main(string[] args)
         {
-         
 
-        List<Vehicle> vehicleList = new List<Vehicle>();
+
+            List<Vehicle> vehicleList = new List<Vehicle>();
             bool runAgain = true;
             while (runAgain == true)
             {
@@ -47,7 +47,7 @@ namespace GarageOne
                         Console.WriteLine("\n");
                         Console.WriteLine("Input can not be empty !");
                     }
-                    
+
 
                     switch (nav)
                     {
@@ -59,7 +59,7 @@ namespace GarageOne
                             break;
 
                         case '3': //Print list of parked vehicles   
-                           
+
                             break;
 
                         case '4': //list of vehicle types currently in the garage
@@ -80,17 +80,18 @@ namespace GarageOne
             }
         }
 
-    
+
 
 
         public static void AddVehicle()
         {
             //List<Vehicle> vehicleList = new List<Vehicle>();
-
-        int  id = 2;
-        Garage<Vehicle> creator = new Garage<Vehicle>(id);
-        bool runAgain = true;
-            while (runAgain == true)
+            Console.Write("How many parking slots are in this garage?");
+            int id = int.Parse(Console.ReadLine());
+            Garage<Vehicle> creator = new Garage<Vehicle>(id);
+            int count = 1;
+            //bool runAgain = true;
+            while (count <= id)
             {
                 string option2 = "";
                 char nav2 = ' ';
@@ -201,20 +202,28 @@ namespace GarageOne
                         break;
                 }
 
-                        Console.WriteLine("The following vehicle(s) are added");
+                Console.WriteLine(count + " vehicle(s)  parked in the garage of " + id + " slots");
+                count++;
+                //if (creator != null)
+                //{
+                //    foreach (var item in creator)
+                //    {
+                //        Console.WriteLine(item.PrintVehicles() +
+                //"\n--------------------------------\n");
+                //    }
 
-                        foreach (var item in creator)
-                        {
-                            Console.WriteLine(item.PrintVehicles() +
-                    "\n--------------------------------\n");
-                        }
-                        Console.ReadLine();
-                }
+                //    Console.ReadLine();
+                //}
+                //else
+                //{
+                //    Console.WriteLine("full");
+                //}
             }
         }
-
-       
     }
+
+
+}
 
 
 
