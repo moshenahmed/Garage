@@ -18,15 +18,15 @@ namespace GarageOne
 
         //public Boat() { }
 
-        public Boat(string regno, string col, string model, int wheels, int length) :
-            base(regno, col, model, wheels)
+        public Boat(string type, string regno, string col, string model, int wheels, int length) :
+            base(type, regno, col, model, wheels)
         {
             Length = length;
         }
 
         public override string PrintVehicles()
         {
-            return base.PrintVehicles() + "\nLength: " + Length;
+            return base.PrintVehicles() + "\nLength of Boat:      " + Length+ " feet";
         }
 
 

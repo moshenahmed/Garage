@@ -18,15 +18,15 @@ namespace GarageOne
 
         //public Bus() { }
 
-        public Bus(string regno, string col, string model, int wheels, int seats) :
-            base(regno, col, model, wheels)
+        public Bus(string type, string regno, string col, string model, int wheels, int seats) :
+            base(type, regno, col, model, wheels)
         {
             NumberOfSeats = seats;
         }
 
         public override string PrintVehicles()
         {
-            return base.PrintVehicles() + "\nNumber of Seats: " + NumberOfSeats;
+            return base.PrintVehicles() + "\nNumber of Seats:     " + NumberOfSeats;
         }
 
 

@@ -48,20 +48,22 @@ namespace GarageOne
 
         //public Vehicle(){}
 
-        public Vehicle(string regno, string col, string model, int wheels)
+        public Vehicle(string type,string regno, string col, string model, int wheels)
         {
-            
+            Type = type;         
             Regnumber = regno;
             Color = col;
             Modelname = model;
             NumberOfWheels = wheels;
-
         }
+       
+        
 
         public virtual string PrintVehicles()
         {
-            return "\nRegistration Number: " + Regnumber +
-                "\nColor: " + Color + "\nModel: " + Modelname + "No. of wheels: " + NumberOfWheels;
+            return "\nVehicle Type:        " + Type + "\nRegistration Number: " + Regnumber +
+                "\nVehicle Color:       " + Color + "\nVehicle Model:       " + Modelname + 
+                "\nNumber of Wheels:    " + NumberOfWheels;
         }
 
 

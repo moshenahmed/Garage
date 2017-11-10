@@ -18,15 +18,15 @@ namespace GarageOne
 
         //public Motorcycle() {}
 
-        public Motorcycle(string regno, string col, string model, int wheels, int cv) :
-            base(regno, col, model, wheels)
+        public Motorcycle(string type, string regno, string col, string model, int wheels, int cv) :
+            base(type, regno, col, model, wheels)
         {
             CylinderVolume = cv;
         }
 
         public override string PrintVehicles()
         {
-            return base.PrintVehicles()+ "\nCylinder Volume: "+CylinderVolume;
+            return base.PrintVehicles()+ "\nCylinder Volume:     "+CylinderVolume;
         }
 
 

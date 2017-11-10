@@ -9,9 +9,9 @@ namespace GarageOne
 {
     public class Garage<T> : IEnumerable<T> where T : Vehicle
     {
-        private List<T> vehicleList;
+        private List<T> vehicleList = new List<T>();
         private int garsize;
-        private int count;      
+        private int count;       
 
         public int GarSize
         {
@@ -24,47 +24,51 @@ namespace GarageOne
             get { return count; }
             set { count = value; }
         }
+               
 
         public Garage(T input) //Must set max capacity
         {                                   
             //need to Set Max Capacity
-            vehicleList = new List<T>();
+            //vehicleList = new List<T>();
         }
 
        
 
-        public void Park(T input)
+        public void Park(T vehicle)
+        {            
+            vehicleList.Add(vehicle);
+        }
+
+        private static void AddVehicle()
         {
-            if (count < garsize)
-            {
-                vehicleList[count++] = input;
-            }
+            //List<Vehicle> vehicleList = new List<Vehicle>();
+            //Console.WriteLine("Type:");
+            //var type = Console.ReadLine();
+            //Console.Write("Registration Number:");
+            //var regno = Console.ReadLine();
+            //Console.Write("Color:");
+            //var col = Console.ReadLine();
+            //Console.Write("Model:");
+            //var model = Console.ReadLine();
+            //Console.WriteLine("Wheels:");
+            //var wheels = Console.ReadLine();
+            //var vehicle = new Vehicle(type,regno, col, model, wheels);
+
+            //vehicleList.Add(vehicle);
+
+            //Console.WriteLine("The following vehicle has been parked");
+            //Console.WriteLine("\n");
+            //foreach (var item in vehicleList)
+            //{
+            //    Console.WriteLine(item.PrintVehicles());
+            //}
+            //Console.ReadLine();
         }
 
         public void Unpark(int id)
         {
-            if (id != 0 && id <= garsize && vehicleList[id] != null)
-            {                
-                if (id + 1 != garsize)
-                {                    
-                    for (int i = id; i < garsize; i++)
-                    {
-                        if (vehicleList[i + 1] != null && i + 1 != garsize)
-                        {
-                            vehicleList[i] = vehicleList[i + 1];
-                        }
-                        else
-                        {
-                            vehicleList[i] = null;
-                        }
-                    }
-                }
-                else
-                {
-                    vehicleList[id] = null;
-                }
-                count--;
-            }
+           
+            
         }
 
 

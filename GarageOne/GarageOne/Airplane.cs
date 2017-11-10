@@ -18,15 +18,17 @@ namespace GarageOne
 
         //public Airplane() { }
 
-        public Airplane(string regno, string col, string model, int wheels, int engines) :
-            base(regno, col, model, wheels)
+        public Airplane(string type, string regno, string col, string model, int wheels, int engines) :
+            base(type, regno, col, model, wheels)
         {
             NumberOfEngines = engines;
         }
 
+        
+
         public override string PrintVehicles()
         {
-            return base.PrintVehicles() + "\nNumber of Engines: " + NumberOfEngines;
+            return base.PrintVehicles() + "\nNumber of Engines:   " + NumberOfEngines;
         }
 
 
