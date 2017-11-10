@@ -9,9 +9,10 @@ namespace GarageOne
 {
     public class Garage<T> : IEnumerable<T> where T : Vehicle
     {
-        private List<T> vehicleList;
+        private T[] garageArray;
         private int garsize;
-        private int count;      
+        private int count;
+
 
         public int GarSize
         {
@@ -22,46 +23,93 @@ namespace GarageOne
         public int Count
         {
             get { return count; }
-            set { count = value; }
+            private set { count = value; }
         }
 
-        public Garage(T input) //Must set max capacity
-        {                                   
-            //need to Set Max Capacity
-            vehicleList = new List<T>();
+
+        //public Park()
+        //{
+
+        //}
+        //public Garage()
+        //{
+
+        //}
+        public Garage(int input)
+        {
+            garsize = input;
+            garageArray = new T[garsize];
+            //for (int i = 0; i < garsize; i++)
+            //{
+            //    garageArray[i] = garageArray[i + 1];
+            //}
         }
+        public void Park(T vehicle)
+        {
+            count = 0;
+            if (count < 10)
+            {
+                
+                for (int i = 0; i < garsize; i++)
+                {
+
+                    garageArray[count] = vehicle;
+                    count += 1;
+                    
+            
+                }
+               
+            }
 
        
 
-        public void Park(T input)
-        {
-            if (count < garsize)
-            {
-                vehicleList[count++] = input;
-            }
+            //for (int i = 0; i < garsize; i++)
+            //{
+            //   
+
+            //}
+
+
         }
+                
+                
+                    
+
+                 
+              
+            
+            
+
+
+
+
+
+
+
+
+
 
         public void Unpark(int id)
         {
-            if (id != 0 && id <= garsize && vehicleList[id] != null)
-            {                
+            if (id != 0 && id <= garsize && garageArray[id] != null)
+            {
                 if (id + 1 != garsize)
-                {                    
+                {
                     for (int i = id; i < garsize; i++)
                     {
-                        if (vehicleList[i + 1] != null && i + 1 != garsize)
+                        if (garageArray[i + 1] != null && i + 1 != garsize)
                         {
-                            vehicleList[i] = vehicleList[i + 1];
+                            garageArray[i] = garageArray[i + 1];
                         }
                         else
                         {
-                            vehicleList[i] = null;
+                            garageArray[i] = null;
                         }
                     }
                 }
                 else
                 {
-                    vehicleList[id] = null;
+                    garageArray[id] = null;
                 }
                 count--;
             }
@@ -70,11 +118,25 @@ namespace GarageOne
 
 
 
+        //public void listparkedvehicles() /*List all elements in the list as parked vehicles.*/
+        //{
+        //    foreach (var item in vehicleList)
+        //    {
+        //        Console.WriteLine(item);
+        //    }
+        //}
+
+
+
+
+
         public IEnumerator<T> GetEnumerator()
         {
-            for (int i = 0; i < count; i++)
+            for (int i = 0; i < garsize; i++)
+
             {
-                yield return vehicleList[i];
+                
+                yield return garageArray[i];
             }
         }
 

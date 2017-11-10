@@ -16,7 +16,7 @@ namespace GarageOne
             set { numberofseats = value; }
         }
 
-        //public Bus() { }
+        public Bus() { }
 
         public Bus(string regno, string col, string model, int wheels, int seats) :
             base(regno, col, model, wheels)

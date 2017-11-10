@@ -46,9 +46,9 @@ namespace GarageOne
         }
 
 
-        //public Vehicle(){}
+        public Vehicle() { }
 
-        public Vehicle(string regno, string col, string model, int wheels)
+        public  Vehicle(string regno, string col, string model, int wheels)
         {
             
             Regnumber = regno;
@@ -61,7 +61,7 @@ namespace GarageOne
         public virtual string PrintVehicles()
         {
             return "\nRegistration Number: " + Regnumber +
-                "\nColor: " + Color + "\nModel: " + Modelname + "No. of wheels: " + NumberOfWheels;
+                "\nColor: " + Color + "\nModel: " + Modelname + "\nNo. of wheels: " + NumberOfWheels;
         }
 
 
