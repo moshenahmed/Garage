@@ -53,7 +53,15 @@ namespace GarageOne
                         case '2':
                             break;
 
-                        case '3': //Print list of parked vehicles                            
+                        case '3': //Print list of parked vehicles   
+                            int id = 4;
+                            Garage<Vehicle> creator = new Garage<Vehicle>(id);
+                            foreach (var item in creator)
+                            {
+                                Console.WriteLine(item.PrintVehicles() +
+                                    "\n--------------------------------\n");
+                            }
+                            Console.ReadLine();
                             break;
 
                         case '4': //list of vehicle types currently in the garage
