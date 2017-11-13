@@ -20,11 +20,12 @@ namespace GarageOne
             {
                 Console.WriteLine("***MAIN MENU***");
                 Console.WriteLine("Choose an option:" +
-                    "\n1. Park your vehicle " +
-                    "\n2. Remove/ unpark your vehicle " +
-                    "\n3. See a list of parked vehicles " +
-                    "\n4. See a list of vehicle types currently in the garage " +
-                    "\n5. Search for a vehicle based on it's registration number " +
+                    "\n1. Create a garage" +
+                    "\n2. Park your vehicle " +
+                    "\n3. Remove/ unpark your vehicle " +
+                    "\n4. See a list of parked vehicles " +
+                    "\n5. See a list of vehicle types currently in the garage " +
+                    "\n6. Search for a vehicle based on it's registration number " +
                     "\n0. Exit the program ");
 
                 string option = "";
@@ -52,20 +53,26 @@ namespace GarageOne
                     switch (nav)
                     {
                         case '1':
-                            AddVehicle();
+                            Console.Write("How many parking slots are in this garage?");
+                            int id = int.Parse(Console.ReadLine());
+                            creator = new Garage<Vehicle>(id);
                             break;
 
                         case '2':
+                            AddVehicle();
                             break;
 
-                        case '3': //Print list of parked vehicles   
-
+                        case '3':
                             break;
 
-                        case '4': //list of vehicle types currently in the garage
+                        case '4': //Print list of parked vehicles   
+                            ParkingList();
                             break;
 
-                        case '5': //Search for a vehicle based on it's registration number
+                        case '5': //list of vehicle types currently in the garage
+                            break;
+
+                        case '6': //Search for a vehicle based on it's registration number
                             break;
 
                         case '0':
@@ -79,19 +86,35 @@ namespace GarageOne
 
             }
         }
+        public static void ParkingList()
+        {
+            foreach (var item in creator)
+            {
+                if (item != null)
+                {
+                    Console.WriteLine(item.PrintVehicles() +
+"\n--------------------------------\n");
+                }
+
+                else {
+                    Console.WriteLine("Free parking slot!");
+                }
+            }
 
 
+            Console.ReadLine();
+        }
 
+
+        private static Garage<Vehicle> creator;
 
         public static void AddVehicle()
         {
             //List<Vehicle> vehicleList = new List<Vehicle>();
-            Console.Write("How many parking slots are in this garage?");
-            int id = int.Parse(Console.ReadLine());
-            Garage<Vehicle> creator = new Garage<Vehicle>(id);
-            int count = 1;
+
+            //int count = 1;
             //bool runAgain = true;
-            while (count <= id)
+
             {
                 string option2 = "";
                 char nav2 = ' ';
@@ -202,17 +225,11 @@ namespace GarageOne
                         break;
                 }
 
-                Console.WriteLine(count + " vehicle(s)  parked in the garage of " + id + " slots");
-                count++;
+                //Console.WriteLine(count + " vehicle(s)  parked in the garage of " + id + " slots");
+                //count++;
                 //if (creator != null)
                 //{
-                //    foreach (var item in creator)
-                //    {
-                //        Console.WriteLine(item.PrintVehicles() +
-                //"\n--------------------------------\n");
-                //    }
-
-                //    Console.ReadLine();
+                //  
                 //}
                 //else
                 //{
