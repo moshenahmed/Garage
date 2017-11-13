@@ -60,7 +60,7 @@ namespace GarageOne
             }
             else
             {
-                Console.WriteLine("full");
+                Console.WriteLine("Sorry, parking is full !!!");
             }
             count++;
             //for (int i = 0; i < garsize; i++)
@@ -70,54 +70,37 @@ namespace GarageOne
         }
 
 
-        public void Unpark(string vehicle)
+        public void Unpark(T vehicle)
         {
 
 
-            var veh = garageArray.Where(x => x.Regnumber.Contains(vehicle));
 
+            int id = Array.IndexOf(garageArray, vehicle);
+            if (id != 0 && id <= garsize && garageArray[id] != null)
+            {
+                if (id + 1 != garsize)
+                {
+                    for (int i = id; i < garsize; i++)
+                    {
+                        if (garageArray[i + 1] != null && i + 1 != garsize)
+                        {
+                            garageArray[i] = garageArray[i + 1];
+                        }
+                        else
+                        {
+                            garageArray[i] = null;
 
-
-            //if (id != 0 && id <= garsize && garageArray[id] != null)
-            //{
-            //    if (id + 1 != garsize)
-            //    {
-            //        for (int i = id; i < garsize; i++)
-            //        {
-            //            if (garageArray[i + 1] != null && i + 1 != garsize)
-            //            {
-            //                garageArray[i] = garageArray[i + 1];
-            //            }
-            //            else
-            //            {
-            //                garageArray[i] = null;
-                           
-            //            }
-            //        }
-            //    }
-            //    else
-            //    {
-            //        garageArray[id] = null;
-            //    }
-            //    count--;
-            //}
+                        }
+                    }
+                }
+                else
+                {
+                    garageArray[id] = null;
+                }
+                count--;
+            }
         }
-
-
-
-
-        //public void listparkedvehicles() /*List all elements in the list as parked vehicles.*/
-        //{
-        //    foreach (var item in vehicleList)
-        //    {
-        //        Console.WriteLine(item);
-        //    }
-        //}
-
-
-
-
-
+   
         public IEnumerator<T> GetEnumerator()
         {
             for (int i = 0; i < garsize; i++)
@@ -134,3 +117,4 @@ namespace GarageOne
         }
     }
 }
+

@@ -9,11 +9,8 @@ namespace GarageOne
     public class Program
 
     {
-
         static void Main(string[] args)
         {
-
-
             List<Vehicle> vehicleList = new List<Vehicle>();
             bool runAgain = true;
             while (runAgain == true)
@@ -49,32 +46,36 @@ namespace GarageOne
                         Console.WriteLine("Input can not be empty !");
                     }
 
-
                     switch (nav)
                     {
                         case '1':
-                            Console.Write("How many parking slots are in this garage?");
+                            Console.WriteLine("How many parking slots are in this garage?");
                             int id = int.Parse(Console.ReadLine());
                             creator = new Garage<Vehicle>(id);
                             break;
 
                         case '2':
+                            Console.Clear();
                             AddVehicle();
                             break;
 
                         case '3':
+                            Console.Clear();
                             RemoveVehicle();
                             break;
 
                         case '4': //Print list of parked vehicles   
+                            Console.Clear();
                             ParkingList();
                             break;
 
                         case '5': //list of vehicle types currently in the garage
+                            Console.Clear();
                             ParkingListType();
                             break;
 
                         case '6': //Search for a vehicle based on it's registration number
+                            Console.Clear();
                             SearchForVehicle();
                             break;
 
@@ -84,9 +85,7 @@ namespace GarageOne
                             Console.ReadLine();
                             return;
                     }
-
                 }
-
             }
         }
 
@@ -99,20 +98,20 @@ namespace GarageOne
             else {
                 string input = "";
 
-
                 Console.WriteLine("List the registration number of the vehicle you want to look up");
                 input = Console.ReadLine();
-                if (String.IsNullOrWhiteSpace(input))
+                if (string.IsNullOrWhiteSpace(input)) 
                 {
-                    return;
+                    Console.WriteLine("Please enter valid input");
                 }
-                else {
+                else
+                {
                     foreach (var itemtwo in creator.Where(x => x.Regnumber.Contains(input)))
                     {
                         Console.WriteLine("The vehicle was found. These are the details: " + "\n" + itemtwo.PrintVehicles());
                         Console.ReadLine();
-
                     }
+                
                 }
             }
         }
@@ -136,8 +135,6 @@ namespace GarageOne
             }
         }
 
-        //    var dictionary = list.GroupBy(str => str)
-        //.ToDictionary(group => group.Key, group => group.Count());
 
         public static void ParkingListType()
         {
@@ -154,10 +151,9 @@ namespace GarageOne
                 }
             }
 
-
             Console.ReadLine();
         }
-
+       
 
         private static Garage<Vehicle> creator;
 
@@ -177,30 +173,27 @@ namespace GarageOne
                     if (item != null)
                     {
                         Console.WriteLine("Type:       " + item.Type +
-                          "\nReg Number: " + item.Regnumber);
+                          "\nReg Number: " + item.Regnumber+
+                          "\n-------------------\n");
                     }
                 }
 
                 Console.WriteLine("List the registration number of the vehicle you want to remove");
                 input = Console.ReadLine();
 
-                var itemtwo = creator.Where(x => x.Regnumber.Contains(input));                 
+                foreach (var itemtwo in creator.Where(x => x.Regnumber.Contains(input))) {
                     Console.WriteLine("The following vehicle will be unparked: " + "\n" + itemtwo.PrintVehicles());
                     Console.ReadLine();
-                creator.Unpark(input);
-
-                
-
-
+                    creator.Unpark(itemtwo);
+                    Console.WriteLine("Vehicle with Registration number : " + input + "has been unparked. Thank you!");
+                }
+                Console.ReadLine();
             }
         }
+
         public static void AddVehicle()
         {
-            //List<Vehicle> vehicleList = new List<Vehicle>();
-
-            //int count = 1;
-            //bool runAgain = true;
-
+            
             {
                 string option2 = "";
                 char nav2 = ' ';
@@ -220,13 +213,13 @@ namespace GarageOne
                     Console.Clear();
                     return;
                 }
-                Console.Write("Registration Number:");
+                Console.Write("Please enter the Registration Number:");
                 var regno = Console.ReadLine();
-                Console.Write("Color:");
+                Console.Write("Please enter the vehicle Color:");
                 var col = Console.ReadLine();
-                Console.Write("Model:");
+                Console.Write("Please enter the vehicle Model:");
                 var model = Console.ReadLine();
-                Console.Write("Wheels:");
+                Console.Write("Please enter the number of Wheels:");
                 var wheelsTest = Console.ReadLine();
                 var wheels = 0;
                 if (!int.TryParse(wheelsTest, out wheels))
@@ -238,7 +231,7 @@ namespace GarageOne
                 {
                     case '1':
 
-                        Console.Write("Fueltype:");
+                        Console.Write("What is the Fueltype used:");
                         var fuel = Console.ReadLine();
                         var type = "Car";
                         var car = new Car(type, regno, col, model, wheels, fuel);
@@ -246,7 +239,7 @@ namespace GarageOne
                         break;
 
                     case '2':
-                        Console.Write("Number of Seats: ");
+                        Console.Write("How many Seats does the bus have?: ");
                         var seatsTest = Console.ReadLine();
                         var seats = 10;
                         if (!int.TryParse(seatsTest, out seats))
@@ -261,7 +254,7 @@ namespace GarageOne
                         break;
 
                     case '3':
-                        Console.Write("Length: ");
+                        Console.Write("What is the boat's Length?: ");
                         var lengthTest = Console.ReadLine();
                         var length = 20;
                         if (!int.TryParse(lengthTest, out length))
@@ -276,7 +269,7 @@ namespace GarageOne
                         break;
 
                     case '4':
-                        Console.Write("Number of Engines: ");
+                        Console.Write("How many Engines does the airplane have?: ");
                         var enginesTest = Console.ReadLine();
 
                         var engines = 2;
@@ -292,7 +285,7 @@ namespace GarageOne
                         break;
 
                     case '5':
-                        Console.Write("Cylinder volume: ");
+                        Console.Write("What is the Cylinder volume: ");
                         var cvTest = Console.ReadLine();
                         var cv = 500;
                         if (!int.TryParse(cvTest, out cv))
@@ -309,18 +302,7 @@ namespace GarageOne
                     default:
                         Console.WriteLine("Please enter valid input(0, 1, 2, 3, 4 or 5)");
                         break;
-                }
-
-                //Console.WriteLine(count + " vehicle(s)  parked in the garage of " + id + " slots");
-                //count++;
-                //if (creator != null)
-                //{
-                //  
-                //}
-                //else
-                //{
-                //    Console.WriteLine("full");
-                //}
+                }               
             }
         }
     }
