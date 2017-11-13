@@ -35,6 +35,7 @@ namespace GarageOne
         //{
 
         //}
+
         public Garage(int input)
         {
             garsize = input;
@@ -46,12 +47,10 @@ namespace GarageOne
             //    garageArray[i] = garageArray[i + 1];
             //}
         }
+
         public void Park(T vehicle)
         {
-
-            
-
-            if ( count < garsize )
+            if (count < garsize)
             {
                 garageArray[count] = vehicle;
                 //if (garageArray[count] == null)
@@ -59,75 +58,49 @@ namespace GarageOne
                 //    Console.WriteLine("empty spot");
                 //}
             }
-          
-
             else
             {
                 Console.WriteLine("full");
             }
             count++;
-
-
-
-
-           
-
-
-
-            
-
-       
-
             //for (int i = 0; i < garsize; i++)
             //{
             //   
-
             //}
-
-
         }
-                
-                
-                    
-
-                 
-              
-            
-            
 
 
-
-
-
-
-
-
-
-
-        public void Unpark(int id)
+        public void Unpark(string vehicle)
         {
-            if (id != 0 && id <= garsize && garageArray[id] != null)
-            {
-                if (id + 1 != garsize)
-                {
-                    for (int i = id; i < garsize; i++)
-                    {
-                        if (garageArray[i + 1] != null && i + 1 != garsize)
-                        {
-                            garageArray[i] = garageArray[i + 1];
-                        }
-                        else
-                        {
-                            garageArray[i] = null;
-                        }
-                    }
-                }
-                else
-                {
-                    garageArray[id] = null;
-                }
-                count--;
-            }
+
+
+            var veh = garageArray.Where(x => x.Regnumber.Contains(vehicle));
+
+
+
+            //if (id != 0 && id <= garsize && garageArray[id] != null)
+            //{
+            //    if (id + 1 != garsize)
+            //    {
+            //        for (int i = id; i < garsize; i++)
+            //        {
+            //            if (garageArray[i + 1] != null && i + 1 != garsize)
+            //            {
+            //                garageArray[i] = garageArray[i + 1];
+            //            }
+            //            else
+            //            {
+            //                garageArray[i] = null;
+                           
+            //            }
+            //        }
+            //    }
+            //    else
+            //    {
+            //        garageArray[id] = null;
+            //    }
+            //    count--;
+            //}
         }
 
 
@@ -150,7 +123,7 @@ namespace GarageOne
             for (int i = 0; i < garsize; i++)
 
             {
-                
+
                 yield return garageArray[i];
             }
         }

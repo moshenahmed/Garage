@@ -63,6 +63,7 @@ namespace GarageOne
                             break;
 
                         case '3':
+                            RemoveVehicle();
                             break;
 
                         case '4': //Print list of parked vehicles   
@@ -70,9 +71,11 @@ namespace GarageOne
                             break;
 
                         case '5': //list of vehicle types currently in the garage
+                            ParkingListType();
                             break;
 
                         case '6': //Search for a vehicle based on it's registration number
+                            SearchForVehicle();
                             break;
 
                         case '0':
@@ -86,6 +89,35 @@ namespace GarageOne
 
             }
         }
+
+        public static void SearchForVehicle()
+        {
+            if (creator.Count < 1)
+            {
+                Console.WriteLine("There are NO vehicles in the garage \n");
+            }
+            else {
+                string input = "";
+
+
+                Console.WriteLine("List the registration number of the vehicle you want to look up");
+                input = Console.ReadLine();
+                if (String.IsNullOrWhiteSpace(input))
+                {
+                    return;
+                }
+                else {
+                    foreach (var itemtwo in creator.Where(x => x.Regnumber.Contains(input)))
+                    {
+                        Console.WriteLine("The vehicle was found. These are the details: " + "\n" + itemtwo.PrintVehicles());
+                        Console.ReadLine();
+
+                    }
+                }
+            }
+        }
+
+
         public static void ParkingList()
         {
             foreach (var item in creator)
@@ -93,11 +125,32 @@ namespace GarageOne
                 if (item != null)
                 {
                     Console.WriteLine(item.PrintVehicles() +
-"\n--------------------------------\n");
+                    "\n--------------------------------\n");
                 }
 
                 else {
                     Console.WriteLine("Free parking slot!");
+                    Console.WriteLine("\n");
+
+                }
+            }
+        }
+
+        //    var dictionary = list.GroupBy(str => str)
+        //.ToDictionary(group => group.Key, group => group.Count());
+
+        public static void ParkingListType()
+        {
+            foreach (var item in creator)
+            {
+                if (item != null)
+                {
+                    Console.WriteLine("Type: " + item.Type + "\nCount: " + creator.GroupBy(x => item.Type).Count() +
+                    "\n--------------------------------\n");
+                }
+
+                else {
+                    Console.WriteLine("Free slot");
                 }
             }
 
@@ -108,6 +161,39 @@ namespace GarageOne
 
         private static Garage<Vehicle> creator;
 
+        public static void RemoveVehicle()
+        {
+            if (creator.Count < 1)
+            {
+                Console.WriteLine("There are NO vehicles parked in the garage \n");
+            }
+            else {
+                string input = "";
+                Console.WriteLine("The following vehicles are currently parked in the garage:");
+                //Console.WriteLine(creator.PrintVehicles()); //.OrderBy(x => x.Regnumber).FirstOrDefault()
+
+                foreach (var item in creator)
+                {
+                    if (item != null)
+                    {
+                        Console.WriteLine("Type:       " + item.Type +
+                          "\nReg Number: " + item.Regnumber);
+                    }
+                }
+
+                Console.WriteLine("List the registration number of the vehicle you want to remove");
+                input = Console.ReadLine();
+
+                var itemtwo = creator.Where(x => x.Regnumber.Contains(input));                 
+                    Console.WriteLine("The following vehicle will be unparked: " + "\n" + itemtwo.PrintVehicles());
+                    Console.ReadLine();
+                creator.Unpark(input);
+
+                
+
+
+            }
+        }
         public static void AddVehicle()
         {
             //List<Vehicle> vehicleList = new List<Vehicle>();
